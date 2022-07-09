@@ -1,7 +1,12 @@
+import { FormEvent } from 'react'
 import { Card } from '../components/Card'
 import './home.scss'
 
 function Home() {
+  function Submit(event: FormEvent) {
+    event.preventDefault()
+
+  }
 
   function getTime() {
     const time = new Date()
@@ -19,7 +24,7 @@ function Home() {
 
   return(
     <div className='container'>
-      <form action=''>
+      <form onSubmit={Submit}>
         <h1>Lista de presença</h1>
         <input type="text" placeholder='digite seu nome' />
 
