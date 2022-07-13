@@ -4,10 +4,12 @@ import './home.scss'
 
 function Home() {
   const [ studentName, setStudentName ] = useState('') // função que armazena o valor digitado no input
-  const [ students, setStudents ] = useState([]) //iniciando com um vetor vazio (tipo array - lista)
+  const [ students, setStudents ] = useState([]) //iniciando com um vetor vazio (tipo array) para armazenar um lista de alunos
 
   function Submit(event: FormEvent) {
     event.preventDefault()
+
+    setStudents([...students, studentName])
 
   }
   
@@ -35,7 +37,7 @@ function Home() {
       </form>
 
       <section>
-        {students.map(element => {
+        {students.map(element => { // percorrer uma lista para que a cada renderização eu tenha mais um componente com um novo dado
           return <Card text={element} time={getTime()}/>
         })}
       </section> 
