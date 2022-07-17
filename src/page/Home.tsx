@@ -38,7 +38,7 @@ function Home() {
 
       <section>
         {students.map(element => { // percorrer uma lista para que a cada renderização eu tenha mais um componente com um novo dado
-          return <Card text={element} time={getTime()}/>
+          return <Card key={element} text={element} time={getTime()}/>
         })}
       </section> 
     </div>
