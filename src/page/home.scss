@@ -17,6 +17,30 @@
 
         height: 100%;
 
+        header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: #7F8487;
+
+            > div {
+                display: flex;
+                flex-direction: column;
+
+                p {
+                    font-size: 12px;
+                    font-weight: 500;
+                    line-height: 0.9em;
+                }
+            }
+
+            img {
+                width: 70px;
+                height: 70px;
+                border-radius: 9999px;
+            }
+        }
 
         h1 {
             font-weight: 500;
