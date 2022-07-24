@@ -1,10 +1,16 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Card } from '../components/Card'
 import './home.scss'
 
 function Home() {
   const [ studentName, setStudentName ] = useState('') // função que armazena o valor digitado no input
   const [ students, setStudents ] = useState([]) //iniciando com um vetor vazio (tipo array) para armazenar um lista de alunos
+  const [ user, setUser ] = useState({
+    name: '', 
+    bio: '', 
+    avatar: '',
+    city: ''
+  })
 
   function Submit(event: FormEvent) {
     event.preventDefault()
@@ -27,14 +33,33 @@ function Home() {
     return `${H} : ${M} : ${S}`
   }
 
+  useEffect(() => { // useEffect usando assincrôno com uma função dentro
+    async function fetchData() {
+      const response = await fetch('https://api.github.com/users/moutinhofuturedev')
+      const data = await response.json()
+
+      setUser({
+        name: data.name,
+        bio: data.bio,
+        avatar: data.avatar_url,
+        city: data.location,
+      })
+    }
+
+    fetchData()
+  
+  }, [])
+
+
   return(
-    <div className='container'>
+    <div className='container'> 
       <form onSubmit={Submit}>
         <header>
-          <img src="https://github.com/moutinhofuturedev.png" alt="Imagem de perfil do professor" />
+          <img src={user.avatar} alt="Imagem de perfil do professor" />
           <div>
-            <strong>Paulo Moutinho</strong>
-            <p>Front-end Software Enginner</p>
+            <strong>{user.name}</strong>
+            <p>{user.bio}</p>
+            <span>Cidade: {user.city}</span>
           </div>
         </header>
 
@@ -59,4 +84,7 @@ function Home() {
 
 export default Home 
 
-
+// Sobre useEffect
+// useEffect(() => {
+//   console.log('useEffect foi chamado...') // {} corpo da execução do useEffect (ele é executado quando o componente é renderizado)
+// }, []) // [] array de dependências
