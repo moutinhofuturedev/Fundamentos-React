@@ -9,7 +9,8 @@ function Home() {
     name: '', 
     bio: '', 
     avatar: '',
-    city: ''
+    city: '',
+    company: '',
   })
 
   function Submit(event: FormEvent) {
@@ -43,6 +44,7 @@ function Home() {
         bio: data.bio,
         avatar: data.avatar_url,
         city: data.location,
+        company: data.company
       })
     }
 
@@ -59,7 +61,10 @@ function Home() {
           <div>
             <strong>{user.name}</strong>
             <p>{user.bio}</p>
-            <span>Cidade: {user.city}</span>
+            <aside>
+              <span>Cidade {user.city}</span>
+              <span>Compania {user.company}</span>
+            </aside>
           </div>
         </header>
 
@@ -88,3 +93,18 @@ export default Home
 // useEffect(() => {
 //   console.log('useEffect foi chamado...') // {} corpo da execução do useEffect (ele é executado quando o componente é renderizado)
 // }, []) // [] array de dependências
+
+// OUTRO EXEMPLO DE useEffect COM O 'THEN' QUE TRABALHA COM PROMISES (PROMESSAS) EM JAVASCRIPT
+// useEffect(() => {
+//   fetch('https://api.github.com/users/moutinhofuturedev')
+//   .then(item => item.json())
+//   .then(elements => {
+//     setUser({
+//       name: elements.name,
+//       bio: elements.bio,
+//       avatar: elements.avatar,
+//       city: elements.city,
+//       company: elements.company,
+//     })
+//   })
+// })
