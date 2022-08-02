@@ -4,7 +4,7 @@ import './home.scss'
 
 function Home() {
   const [ studentName, setStudentName ] = useState('') // função que armazena o valor digitado no input
-  const [ students, setStudents ] = useState([]) //iniciando com um vetor vazio (tipo array) para armazenar um lista de alunos
+  const [ students, setStudents ] = useState<string[]>([]) //iniciando com um vetor vazio (tipo array) para armazenar um lista de alunos
   const [ user, setUser ] = useState({
     name: '', 
     bio: '', 
@@ -35,7 +35,7 @@ function Home() {
   }
 
   useEffect(() => { // useEffect usando assincrôno com uma função dentro
-    async function fetchData() {
+    async function fetchData() {  // useEffect usando assincrôno com uma função dentro
       const response = await fetch('https://api.github.com/users/moutinhofuturedev')
       const data = await response.json()
 
