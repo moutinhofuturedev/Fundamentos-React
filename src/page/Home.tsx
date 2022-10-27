@@ -2,6 +2,14 @@ import { FormEvent, useEffect, useState } from 'react'
 import { Card } from '../components/Card'
 import './home.scss'
 
+type APIResponse = {
+  name: string
+  bio: string
+  avatar_url: string
+  location: string
+  company: string
+}
+
 function Home() {
   const [ studentName, setStudentName ] = useState('') // função que armazena o valor digitado no input
   const [ students, setStudents ] = useState<string[]>([]) //iniciando com um vetor vazio (tipo array) para armazenar um lista de alunos
@@ -37,7 +45,7 @@ function Home() {
   useEffect(() => { // useEffect usando assincrôno com uma função dentro
     async function fetchData() {  // useEffect usando assincrôno com uma função dentro
       const response = await fetch('https://api.github.com/users/moutinhofuturedev')
-      const data = await response.json()
+      const data = await response.json() as APIResponse // tipagem
 
       setUser({
         name: data.name,
